@@ -63,11 +63,7 @@ export default function Form() {
     });
     navigate('/events');
   };
-  //     const [items, setItems] = useState([]);
-//   console.log(JSON.parse(localStorage.getItem("Event")));
-  // useEffect(() => {
-  //   localStorage.setItem('items', JSON.stringify(items));
-  // }, []);
+ 
 
   const onChange = (e) => {
     setEvant({ ...evant, [e.target.name]: e.target.value });
@@ -123,12 +119,12 @@ export default function Form() {
             onChange={onChange}
             required
           >
-            <option defaultValue={"Event"} value="Evant">
+            <option defaultValue={"Event"} value="Event">
               Event
             </option>
             {/* <option value="1">Event</option> */}
-            <option value="outofoffice">Out of office</option>
-            <option value="task">Task</option>
+            <option value="Out Of Office">Out of office</option>
+            <option value="Task">Task</option>
           </select>
         </div>
         <div className="mb-3">
