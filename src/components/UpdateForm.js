@@ -1,35 +1,51 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom"; 
 import moment from "moment";
 moment().format();
 console.log(moment().format());
 console.log(new Date(2022, 9, 3, 14, 30, 0).toTimeString());
 export default function Form() {
+    const location = useLocation();
+    console.log(location.state)
+    const prefilledValues = location.state;
+    console.log(prefilledValues.eventAttachment)
   const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState({});
 
-  function generateId() {
-    let id = "";
-    let possible = "abcdefghijklmnopqrstuvwxyz0123456789";
-    for (let i = 0; i < 12; i++) {
-      id += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return id;
-  }
+//   function generateId() {
+//     let id = "";
+//     let possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+//     for (let i = 0; i < 12; i++) {
+//       id += possible.charAt(Math.floor(Math.random() * possible.length));
+//     }
+//     return id;
+//   }
+// const today = new Date(prefilledValues.eventDate);
+// const yyyy = today.getFullYear();
+// let mm = today.getMonth() + 1; // Months start at 0!
+// let dd = today.getDate();
 
+// if (dd < 10) dd = '0' + dd;
+// if (mm < 10) mm = '0' + mm;
+
+const formattedDate = new Date(prefilledValues.eventDate).toISOString().substr(0, 10);
+console.log(formattedDate)
   const [formValues, setFormValues] = useState({
-    title: "",
-    description: "",
-    type: "Event",
-    date: "",
-    startTime: "",
-    endTime: "",
+    title: prefilledValues.eventTitle,
+    description: prefilledValues.eventDiscription,
+    type: prefilledValues.eventType,
+    date: formattedDate,
+    startTime: prefilledValues.eventStart,
+    endTime: prefilledValues.eventEnd,
     attachment: "",
   });
-  const [attachmentFile,setAttachmentFile] = useState("") 
+  const [attachmentFile,setAttachmentFile] = useState(prefilledValues.eventAttachment) 
   const validate = (values) => {
     const errors = {};
     const allTheEvents = JSON.parse(window.localStorage.getItem("allEvents"));
+    const newAllEvents =  allTheEvents.filter((eventtt)=>{
+        return eventtt.id !== prefilledValues.eventId;
+      })
     console.log(allTheEvents);
     if (
       !values.title ||
@@ -43,7 +59,7 @@ export default function Form() {
       values.description.trim() === "" ||
       values.description.trim().length <= 5
     ) {
-      errors.disError = "Discription should be greater then five characters";
+      errors.disError = "Discription should be greater then five cracters";
     }
     if (
       !values.date ||
@@ -94,8 +110,8 @@ export default function Form() {
     ) {
       errors.startTimeError = "Start time should be in future";
     }
-    if (allTheEvents && allTheEvents.length > 0) {
-      for (let event of allTheEvents) {
+    if (newAllEvents && newAllEvents.length > 0) {
+      for (let event of newAllEvents) {
         const eventDate = new Date(event.date);
         const valuesDate = new Date(values.date);
         if (
@@ -161,10 +177,9 @@ export default function Form() {
       localStorage.setItem("allEvents", JSON.stringify([]));
     }
     // localStorage.addItem({note.title, note.description, note.tag});
-    
 
-    const file = formValues.attachment;
-    console.log(file);
+    // const file = formValues.attachment.files[0];
+    // console.log(file);
     const theEvent = {
       title: formValues.title,
       discription: formValues.description,
@@ -173,7 +188,7 @@ export default function Form() {
       startTime: formValues.startTime,
       endTime: formValues.endTime,
       attachment: attachmentFile,
-      id: generateId(),
+      id: prefilledValues.eventId,
     };
     // console.log(theEvent.date)
     // console.log(formValues.date)
@@ -198,9 +213,22 @@ export default function Form() {
     // }
 
     let eventsData = JSON.parse(window.localStorage.getItem("allEvents"));
-    eventsData.push(theEvent);
+   
+        const newAllEvents =  eventsData.filter((eventtt)=>{
+          return eventtt.id !== prefilledValues.eventId;
+        })
+    //     window.localStorage.setItem("allEvents", JSON.stringify(newAllEvents));
+    //     if(changeHappen === true){
+    
+    //       setChangeHappen(false)
+    //     }else{
+    //       setChangeHappen(true)
+    //     }
+    //   }
 
-    window.localStorage.setItem("allEvents", JSON.stringify(eventsData));
+    newAllEvents.push(theEvent);
+
+    window.localStorage.setItem("allEvents", JSON.stringify(newAllEvents));
     setFormValues({
       title: "",
       description: "",
@@ -241,7 +269,6 @@ reader.readAsDataURL(fileData);
   };
 //   const onChangeForFile = (e) => {
 //     const fileData = e.target.files[0];
-    
 
 //     const reader = new FileReader();
 
@@ -255,7 +282,7 @@ reader.readAsDataURL(fileData);
       className="container"
       style={{ marginTop: "85px", maxWidth: "45rem", width: "87%" }}
     >
-      <h2 className="text-center">Create An Event</h2>
+      <h2 className="text-center">Edit Your Event</h2>
       <form className="my-3" onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
@@ -376,8 +403,9 @@ reader.readAsDataURL(fileData);
           />
         </div>
         <p style={{ color: "red" }}>{formErrors.eventExistsAtThatTime}</p>
+
         <button type="submit" className="btn btn-primary">
-          Create Event
+          Save Changes
         </button>
       </form>
     </div>

@@ -1,0 +1,8 @@
+.react-calendar{
+width: auto;
+margin: auto 30px;
+}
+.selected-date{
+    text-align: center;
+    margin-top: 10px;
+}
