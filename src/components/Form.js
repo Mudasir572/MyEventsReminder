@@ -225,12 +225,7 @@ reader.onload = (event) => {
   console.log("working")
 }
 reader.readAsDataURL(fileData);
-      // const fileString = JSON.stringify(fileData)
-// console.log(fileString)
-// setAttachmentFile(fileData)
-//       const reader = new FileReader();
-//       const fileUrl = reader.readAsDataURL(fileData);
-//   console.log(fileUrl)
+     
       setFormValues({...formValues, [e.target.name]: e.target.value})
       console.log(e.target.files[0])
     }else{

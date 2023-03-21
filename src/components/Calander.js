@@ -10,6 +10,7 @@ export default function Calander() {
   const navigate = useNavigate();
   const [dateState, setDateState] = useState(new Date())
   const [items, setItems] = useState([]);
+  const [changeHappen,setChangeHappen] = useState(false);
   const changeDate = (e) => {
     setDateState(e)
   }
@@ -62,7 +63,7 @@ export default function Calander() {
   
   useEffect(() => {
     updatePage();
-  },[dateState]);
+  },[dateState,changeHappen]);
 
 
   return (
@@ -105,6 +106,7 @@ export default function Calander() {
                   type={element.type}
                   attachment={element.attachment}
                   id={element.id}
+                  setChangeHappen={setChangeHappen}
                 />
               );
             })
