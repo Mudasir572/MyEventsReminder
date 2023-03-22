@@ -8,9 +8,7 @@ export default function Events() {
   const [items, setItems] = useState([]);
   const [filterType,setFilterType] = useState('');
   const [changeHappen,setChangeHappen] = useState(false);
-  let typeThatIsSelected = ''
   function changeType(e) {
-    typeThatIsSelected = e.target.value;
          const selectedType = e.target.value;
          setFilterType(selectedType);
          console.log(selectedType)
@@ -51,7 +49,7 @@ export default function Events() {
       const filteredEvents = sortedEvents.filter((eventt)=>{
         console.log(eventt.type)
         console.log(filterType)
-           return eventt.type == filterType;
+           return eventt.type === filterType;
       })
       console.log(filteredEvents)
       setItems(filteredEvents)
@@ -66,7 +64,7 @@ export default function Events() {
 
   useEffect(() => {
     updatePage();
-  }, [filterType,changeHappen]);
+  },[filterType,changeHappen]);
 
   return (
     <>
