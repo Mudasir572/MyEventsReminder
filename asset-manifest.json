@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Mudasir572.github.io/MyEventsReminder/static/css/main.ee4ec2b6.css",
-    "main.js": "/Mudasir572.github.io/MyEventsReminder/static/js/main.f352de50.js",
-    "static/js/787.4b86b67d.chunk.js": "/Mudasir572.github.io/MyEventsReminder/static/js/787.4b86b67d.chunk.js",
-    "index.html": "/Mudasir572.github.io/MyEventsReminder/index.html",
-    "main.ee4ec2b6.css.map": "/Mudasir572.github.io/MyEventsReminder/static/css/main.ee4ec2b6.css.map",
-    "main.f352de50.js.map": "/Mudasir572.github.io/MyEventsReminder/static/js/main.f352de50.js.map",
-    "787.4b86b67d.chunk.js.map": "/Mudasir572.github.io/MyEventsReminder/static/js/787.4b86b67d.chunk.js.map"
+    "main.css": "/MyEventsReminder/static/css/main.ee4ec2b6.css",
+    "main.js": "/MyEventsReminder/static/js/main.fdceee92.js",
+    "static/js/787.4b86b67d.chunk.js": "/MyEventsReminder/static/js/787.4b86b67d.chunk.js",
+    "index.html": "/MyEventsReminder/index.html",
+    "main.ee4ec2b6.css.map": "/MyEventsReminder/static/css/main.ee4ec2b6.css.map",
+    "main.fdceee92.js.map": "/MyEventsReminder/static/js/main.fdceee92.js.map",
+    "787.4b86b67d.chunk.js.map": "/MyEventsReminder/static/js/787.4b86b67d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ee4ec2b6.css",
-    "static/js/main.f352de50.js"
+    "static/js/main.fdceee92.js"
   ]
 }
