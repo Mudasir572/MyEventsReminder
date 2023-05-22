@@ -17,6 +17,9 @@ export default function Calander() {
   async function updatePage() {
     const allEvents = JSON.parse(window.localStorage.getItem("allEvents"));
     // console.log(allEvents)
+    if(!allEvents){
+      return
+    }
     const sortedEvents = allEvents.sort((e1, e2) =>
       moment(new Date(e1.date))
         .add(e1.startTime.split(":")[0] - 5, "h")
@@ -46,7 +49,7 @@ export default function Calander() {
     const DateOfEvent = new Date(eventt.date).toDateString()
    const DateSelected = dateState.toDateString()
     console.log(dateState.toDateString())
-         return DateOfEvent == DateSelected;
+         return DateOfEvent === DateSelected;
     })
     
     

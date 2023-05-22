@@ -21,14 +21,14 @@ export default function EventItem(props) {
   const datetoConcate = new Date(date);
   console.log(new Date(date).toISOString());
   console.log(new Date(date));
-  const startTimeT = moment(datetoConcate)
-    .add(startTime.split(":")[0], "h")
-    .add(startTime.split(":")[1], "m")
-    .format();
-  const endTimeT = moment(datetoConcate)
-    .add(endTime.split(":")[0], "h")
-    .add(endTime.split(":")[1], "m")
-    .format();
+  // const startTimeT = moment(datetoConcate)
+  //   .add(startTime.split(":")[0], "h")
+  //   .add(startTime.split(":")[1], "m")
+  //   .format();
+  // const endTimeT = moment(datetoConcate)
+  //   .add(endTime.split(":")[0], "h")
+  //   .add(endTime.split(":")[1], "m")
+  //   .format();
   console.log(
     moment(datetoConcate)
       .add(endTime.split(":")[0] - 5, "h")
@@ -171,7 +171,7 @@ export default function EventItem(props) {
 </button> */}
 
             {attachment && attachment !== "" ? (
-              <a href="" onClick={getAttachedFile}>
+              <a href="$" onClick={getAttachedFile}>
                 <svg
                   pointerEvents="none"
                   xmlns="http://www.w3.org/2000/svg"

@@ -20,6 +20,9 @@ export default function Events() {
   async function updatePage() {
     console.log(localStorage.getItem('file'))
     const allEvents = JSON.parse(window.localStorage.getItem("allEvents"));
+    if(!allEvents){
+      return
+    }
     // console.log(allEvents)
     const sortedEvents = allEvents.sort((e1, e2) =>
       moment(new Date(e1.date))
