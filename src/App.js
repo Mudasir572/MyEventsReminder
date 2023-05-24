@@ -13,7 +13,7 @@ function App() {
      
      
      <Routes>
-     <Route  exact path="/"  element={ < Events/>}/>
+     <Route  exact index  element={ < Events/>}/>
      <Route  exact path="/events"  element={ < Events/>}/>
         <Route  exact path="/calander" element={< Calander/> }/>
         <Route  exact path="/createevent"  element={ <Form /> }/> 
